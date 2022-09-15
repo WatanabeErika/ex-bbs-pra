@@ -7,6 +7,15 @@
 </head> 
 <body> 
 
+<form th:action="@{/ex-bbs/articleInsert}" th:object="${articleForm}" method="post">
+
+	投稿者名：<input type="text" name="name" th:field="*{name}"><br>
+	投稿内容:<textarea name="content" th:field="*{content}" rows="5" cols="33"></textarea><br>
+	
+	<button>記事投稿</button>
+
+</form>
+<hr>
 <span th:each="article : ${articleList}">
 	投稿者名：<span th:text="${article.name}"></span><br>
 	投稿内容：<br><span th:text="${article.content}"></span><br>

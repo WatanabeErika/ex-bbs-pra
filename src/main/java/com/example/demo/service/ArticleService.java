@@ -22,4 +22,10 @@ public class ArticleService {
 		return repository.findAll();
 	}
 	
+	/**
+	 * 記事投稿
+	 */
+	public void articleInsert(Article article) {
+		repository.articleInsert(article);
+	}
 }
