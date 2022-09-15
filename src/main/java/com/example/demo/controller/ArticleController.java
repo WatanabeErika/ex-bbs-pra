@@ -10,14 +10,19 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.demo.domain.Article;
+import com.example.demo.domain.Comment;
 import com.example.demo.form.ArticleForm;
 import com.example.demo.service.ArticleService;
+import com.example.demo.service.CommentService;
 
 @Controller
 @RequestMapping("/ex-bbs")
 public class ArticleController {
 	@Autowired
-	private ArticleService service;
+	private ArticleService articleService;
+	
+	@Autowired
+	private CommentService commentService;
 	
 	@ModelAttribute
 	public ArticleForm setUpForm() {
@@ -29,7 +34,12 @@ public class ArticleController {
 	 */
 	@RequestMapping("/articleShowList")
 	public String articleShowList(Model model) {
-		List<Article> articleList = service.findAll();
+		List<Article> articleList = articleService.findAll();
+		
+		articleList.forEach(article -> {
+			List<Comment> commentList = commentService.findByArticleId(article.getId());
+			article.setCommentList(commentList);
+		});
 		
 		model.addAttribute("articleList", articleList);
 		
@@ -45,8 +55,10 @@ public class ArticleController {
 		
 		BeanUtils.copyProperties(form, article);
 		
-		service.articleInsert(article);
+		articleService.articleInsert(article);
 		
 		return "redirect:/ex-bbs/articleShowList";
 	}
+	
+	
 }
