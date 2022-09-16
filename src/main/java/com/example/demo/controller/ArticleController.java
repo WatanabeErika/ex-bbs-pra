@@ -40,12 +40,14 @@ public class ArticleController {
 	 */
 	@RequestMapping("/articleShowList")
 	public String articleShowList(Model model) {
-		List<Article> articleList = articleService.findAll();
+//		List<Article> articleList = articleService.findAll();
+//		
+//		articleList.forEach(article -> {
+//			List<Comment> commentList = commentService.findByArticleId(article.getId());
+//			article.setCommentList(commentList);
+//		});
 		
-		articleList.forEach(article -> {
-			List<Comment> commentList = commentService.findByArticleId(article.getId());
-			article.setCommentList(commentList);
-		});
+		List<Article> articleList = articleService.findCommentArticleList();
 		
 		model.addAttribute("articleList", articleList);
 		
