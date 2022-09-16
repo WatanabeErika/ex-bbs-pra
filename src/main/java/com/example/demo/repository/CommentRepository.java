@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
@@ -83,5 +84,18 @@ public class CommentRepository {
 //				+ "ON a.id = c.article_id "
 //				+ "WHERE c.article_id = :articleId";
 //	}
+	
+	/**
+	 * @param comment
+	 * コメント投稿
+	 */
+	public void insertComment(Comment comment) {
+		SqlParameterSource param = new BeanPropertySqlParameterSource(comment);
+		
+		String sql = "INSERT INTO comments (name, content, article_id) "
+				+ "VALUES (:name, :content, :articleId)";
+		
+		template.update(sql, param);
+	}
 	
 }

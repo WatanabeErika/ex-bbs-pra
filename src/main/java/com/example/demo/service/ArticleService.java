@@ -28,4 +28,5 @@ public class ArticleService {
 	public void articleInsert(Article article) {
 		repository.articleInsert(article);
 	}
+	
 }

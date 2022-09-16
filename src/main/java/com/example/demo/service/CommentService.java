@@ -25,5 +25,12 @@ public class CommentService {
 		return repository.findByArticleId(articleId);
 	}
 	
+	/**
+	 * @param comment
+	 * コメント投稿
+	 */
+	public void insertComment(Comment comment) {
+		repository.insertComment(comment);
+	}
 	
 }
