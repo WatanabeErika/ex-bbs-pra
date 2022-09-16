@@ -29,4 +29,12 @@ public class ArticleService {
 		repository.articleInsert(article);
 	}
 	
+	/**
+	 * @param id
+	 * 記事削除
+	 */
+	public void articleDelete(Integer id) {
+		repository.articleDelete(id);
+	}
+	
 }

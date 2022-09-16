@@ -82,4 +82,22 @@ public class ArticleController {
 		return "redirect:/ex-bbs/articleShowList";
 	}
 	
+	/**
+	 * @return　記事＆コメント削除
+	 * 
+	 */
+	@RequestMapping("/delete")
+	public String delete(Integer id) {
+		
+		Comment comment = new Comment();
+		
+		comment.setArticleId(id);
+		
+		articleService.articleDelete(id);
+		
+		commentService.deleteComment(comment.getArticleId());
+		
+		return "redirect:/ex-bbs/articleShowList";
+	}
+	
 }

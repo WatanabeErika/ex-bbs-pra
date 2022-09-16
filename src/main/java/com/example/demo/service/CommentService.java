@@ -33,4 +33,12 @@ public class CommentService {
 		repository.insertComment(comment);
 	}
 	
+	/**
+	 * @param articleId
+	 * コメント削除
+	 */
+	public void deleteComment(Integer articleId) {
+		repository.deleteComment(articleId);
+	}
+	
 }
