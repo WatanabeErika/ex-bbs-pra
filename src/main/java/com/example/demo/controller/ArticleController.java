@@ -6,6 +6,8 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -58,7 +60,12 @@ public class ArticleController {
 	 * 記事投稿
 	 */
 	@RequestMapping("/articleInsert")
-	public String articleInsert(ArticleForm form) {
+	public String articleInsert(@Validated ArticleForm form, BindingResult rs, Model model) {
+		
+		if(rs.hasErrors()) {
+			return articleShowList(model);
+		}
+		
 		Article article = new Article();
 		
 		BeanUtils.copyProperties(form, article);
@@ -73,7 +80,12 @@ public class ArticleController {
 	 * コメント投稿
 	 */
 	@RequestMapping("/insertComment")
-	public String insertComment(CommentForm form, Integer id) {
+	public String insertComment(@Validated CommentForm form, Integer id, BindingResult rs, Model model) {
+		
+		if(rs.hasErrors()) {
+			return articleShowList(model);
+		}
+		
 		Comment comment = new Comment();
 		
 		BeanUtils.copyProperties(form, comment);

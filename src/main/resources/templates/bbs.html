@@ -9,8 +9,11 @@
 
 <form th:action="@{/ex-bbs/articleInsert}" th:object="${articleForm}" method="post">
 
-	投稿者名：<input type="text" name="name" th:field="*{name}"><br>
-	投稿内容:<br><textarea name="content" th:field="*{content}" rows="5" cols="33"></textarea><br>
+	<span th:errors="*{name}" style="color: red;"></span><br>
+		投稿者名：<input type="text" name="name" th:field="*{name}"><br>
+	
+	<span th:errors="*{content}" style="color: red;"></span><br>
+		投稿内容:<br><textarea name="content" th:field="*{content}" rows="5" cols="33"></textarea><br>
 	
 	<button>記事投稿</button>
 
@@ -35,7 +38,11 @@
 	<br>
 <form th:action="@{/ex-bbs/insertComment}" th:object="${commentForm}" method="post">
 	<input type="hidden" name="id" th:value="${article.id}">
+	
+	<span th:errors="*{name}" style="color: red;"></span><br>
 		名前：<input type="text" name="name" th:field="*{name}"><br>
+		
+	<span th:errors="*{content}" style="color: red;"></span><br>
 		コメント:<br><textarea name="content" th:field="*{content}" rows="5" cols="33"></textarea><br>
 	
 	<button>コメント投稿</button>
