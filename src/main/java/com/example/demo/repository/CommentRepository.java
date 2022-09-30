@@ -84,4 +84,5 @@ public class CommentRepository {
 //				+ "WHERE c.article_id = :articleId";
 //	}
 	
+//	分かりやすくテスト
 }
