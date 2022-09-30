@@ -56,6 +56,9 @@ public class CommentRepository {
 		template.update(sql, param);
 	}
 	
+
+
+
 	/**
 	 * @param articleId
 	 * コメント削除
@@ -67,4 +70,7 @@ public class CommentRepository {
 		
 		template.update(sql, param);
 	}
+
+//	分かりやすくテスト
+	
 }
