@@ -18,8 +18,15 @@ public class ArticleService {
 	/**
 	 * @return 記事一覧表示
 	 */
-	public List<Article> findAll(){
-		return repository.findAll();
+//	public List<Article> findAll(){
+//		return repository.findAll();
+//	}
+	
+	/**
+	 * @return 記事とコメント結合一覧表示
+	 */
+	public List<Article> findCommentArticleList(){
+		return repository.findCommentArticleList();
 	}
 	
 	/**
@@ -28,4 +35,13 @@ public class ArticleService {
 	public void articleInsert(Article article) {
 		repository.articleInsert(article);
 	}
+	
+	/**
+	 * @param id
+	 * 記事削除
+	 */
+	public void articleDelete(Integer id) {
+		repository.articleDelete(id);
+	}
+	
 }
