@@ -73,4 +73,6 @@ public class CommentRepository {
 
 //	分かりやすくテスト
 	
+//	これも分かりやすくテストするよん
+	
 }
